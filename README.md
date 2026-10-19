@@ -1,34 +1,76 @@
-# Proyek Analisis Data: Bike Sharing Dataset 🚲
+# Bike Sharing Analytics Dashboard 🚲✨
 
 Submission proyek akhir kelas **Belajar Analisis Data dengan Python** dari Dicoding Indonesia.
 
 ## 👤 Identitas Pengembang
 - **Nama:** Dimas Raditya Putra Handoko
 - **Email:** dimxshan916@gmail.com
-- **ID Dicoding:** ds012b6y0460
-- **Tautan Dashboard:** [Streamlit Community Cloud](https://bike-sharing-analysis-dimas.streamlit.app)
+- **ID Dicoding:** dimxshan
 
-## 📌 Ringkasan Proyek
-Proyek ini melakukan analisis data eksploratori dan visualisasi terhadap **Capital Bikeshare Dataset (2011–2012)** untuk menjawab:
-1. **Pengaruh Musim & Cuaca:** Menilai dampak perubahan musim (`season`) dan kondisi cuaca (`weathersit`) terhadap rata-rata serta total penyewaan sepeda harian (`cnt`).
-2. **Karakteristik Pengguna & Jam Sibuk:** Mengidentifikasi perbedaan pola jam sibuk (*peak hours*, `hr`) antara pengguna komuter (*registered*) dan pengguna rekreasi (*casual*) pada hari kerja vs hari libur.
-3. **Pertumbuhan Tahunan (YoY):** Menganalisis lonjakan volume sewa antar-tahun (2011 vs 2012) di setiap bulan serta kontribusi masing-masing segmen pengguna.
-4. **Analisis Lanjutan (Manual Clustering via Binning):** Mengelompokkan jam operasional ke dalam 4 klaster waktu aktivitas (*Morning Commute*, *Midday Activity*, *Evening Commute*, *Night/Off-Peak*) dan mengelompokkan temperatur ke dalam 3 klaster kenyamanan (*Cold*, *Comfortable*, *Warm/Hot*).
+## 📌 Deskripsi Proyek
+Proyek ini menganalisis dan memvisualisasikan data historis **Capital Bikeshare Dataset (2011–2012)** untuk mengevaluasi pengaruh faktor musim dan kondisi cuaca terhadap penyewaan sepeda, membandingkan pola jam sibuk pengguna *registered* vs *casual* pada hari kerja dan hari libur, mengukur pertumbuhan bulanan *Year-over-Year* (YoY), serta menerapkan analisis lanjutan berupa **Manual Clustering via Binning** berdasarkan waktu operasional dan kenyamanan suhu.
 
 ## 📁 Struktur Direktori Proyek
-| Nama Berkas / Folder | Deskripsi |
-| :--- | :--- |
-| `dashboard/dashboard.py` | Skrip utama aplikasi dashboard interaktif berbasis Streamlit |
-| `dashboard/main_data.csv` | Dataset bersih tingkat jam yang telah melalui tahap *Cleaning* & *Feature Engineering* |
-| `data/day.csv` | Dataset mentah agregasi penyewaan harian (731 baris) |
-| `data/hour.csv` | Dataset mentah agregasi penyewaan per jam (17.379 baris) |
-| `data/Readme.txt` | Dokumentasi asli dan lisensi dataset dari peneliti |
-| `notebook.ipynb` | Jupyter Notebook berisi tahapan lengkap *Data Wrangling*, *EDA*, *Visualization*, dan *Conclusion* |
-| `README.md` | Dokumentasi proyek dan panduan instalasi |
-| `requirements.txt` | Daftar pustaka Python untuk environment lokal dan deployment Streamlit Cloud |
-| `url.txt` | Tautan aplikasi dashboard publik di Streamlit Community Cloud |
+```text
+submission/
+├── dashboard/
+│   ├── dashboard.py        # Skrip utama aplikasi dashboard Streamlit
+│   └── main_data.csv       # Dataset bersih hasil Data Wrangling & Clustering
+├── data/
+│   ├── day.csv             # Dataset mentah agregasi harian (731 baris)
+│   ├── hour.csv            # Dataset mentah agregasi per jam (17.379 baris)
+│   └── Readme.txt          # Dokumentasi asli dataset
+├── notebook.ipynb          # Berkas Jupyter Notebook analisis data lengkap
+├── README.md               # Dokumentasi panduan setup dan eksekusi proyek
+├── requirements.txt        # Daftar library Python yang dibutuhkan
+└── url.txt                 # Tautan live dashboard di Streamlit Community Cloud
+```
 
-## 💻 Panduan Menjalankan Dashboard Secara Lokal
-1. **Instalasi Dependensi:**
-   ````bash
-   python -m pip install -r requirements.txt
+## 🛠️ Setup Environment - Anaconda
+Pastikan Anaconda atau Miniconda telah terinstal di komputer Anda, lalu jalankan perintah berikut pada terminal/Anaconda Prompt:
+```bash
+conda create --name bike-sharing-ds python=3.11
+conda activate bike-sharing-ds
+pip install -r requirements.txt
+```
+
+## 💻 Setup Environment - Shell/Terminal (venv / Pipenv)
+Jika Anda menggunakan terminal standar (PowerShell, Command Prompt, atau Bash), pilih salah satu metode *virtual environment* berikut:
+
+**Opsi 1: Menggunakan `venv` (Bawaan Python)**
+```bash
+# Membuat virtual environment
+python -m venv .venv
+
+# Mengaktifkan virtual environment (Windows)
+.venv\Scripts\activate
+
+# Mengaktifkan virtual environment (macOS/Linux)
+source .venv/bin/activate
+
+# Menginstal library dari requirements.txt
+pip install -r requirements.txt
+```
+
+**Opsi 2: Menggunakan `pipenv`**
+```bash
+mkdir bike_sharing_analysis
+cd bike_sharing_analysis
+pipenv install
+pipenv shell
+pip install -r requirements.txt
+```
+
+## 🚀 Run Streamlit App
+Setelah *virtual environment* aktif dan seluruh library pada `requirements.txt` terinstal, jalankan perintah berikut dari direktori utama proyek (sesuai struktur folder `dashboard/dashboard.py`):
+```bash
+streamlit run dashboard/dashboard.py
+```
+
+Jika Anda berada di dalam sub-direktori `dashboard/`, Anda juga dapat menjalankannya dengan:
+```bash
+cd dashboard
+streamlit run dashboard.py
+```
+
+Aplikasi dashboard akan otomatis terbuka di browser Anda pada alamat `http://localhost:8501`.
